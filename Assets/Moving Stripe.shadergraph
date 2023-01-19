@@ -252,7 +252,7 @@
         "preventRotation": false
     },
     "m_Path": "Shader Graphs",
-    "m_GraphPrecision": 1,
+    "m_GraphPrecision": 2,
     "m_PreviewMode": 2,
     "m_OutputNode": {
         "m_Id": ""
@@ -327,8 +327,8 @@
     "m_StageCapability": 2,
     "m_Value": {
         "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
+        "y": 0.8333132266998291,
+        "z": 1.0
     },
     "m_DefaultValue": {
         "x": 0.0,
@@ -390,8 +390,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -386.3999938964844,
-            "y": 68.79997253417969,
+            "x": -373.5999755859375,
+            "y": 65.60000610351563,
             "width": 121.60000610351563,
             "height": 76.80000305175781
         }
@@ -1185,9 +1185,9 @@
     "m_ShaderOutputName": "BaseColor",
     "m_StageCapability": 2,
     "m_Value": {
-        "x": 1.0,
+        "x": 0.0,
         "y": 1.0,
-        "z": 1.0
+        "z": 0.8122713565826416
     },
     "m_DefaultValue": {
         "x": 0.0,
