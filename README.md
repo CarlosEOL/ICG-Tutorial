@@ -1,5 +1,9 @@
 # Tutorial 1: Introduction to Shader Graph and Nodes #
 
+<p align="right">
+01 / 19 / 2023
+</p>
+
 This shader particularly used time and multiply to affect the **fresnel effect** like it was blinking, and added color to multiply to make the outline appear blue.
 The base material combined **normalized normal vector** and the **position vector** of the object to produce a RGB effect.
 
