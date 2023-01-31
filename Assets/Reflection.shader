@@ -1,4 +1,4 @@
-Shader "Custom/Force FIeld"
+Shader "Custom/Reflection"
 {
     Properties
     {
@@ -7,6 +7,7 @@ Shader "Custom/Force FIeld"
         _Intensity ("Intensity", Range(0,1)) = 1
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
+        _skyBox ("Sky Box", CUBE) = "Grey" {}
     }
     SubShader
     {
@@ -26,6 +27,7 @@ Shader "Custom/Force FIeld"
         struct Input
         {
             float2 uv_MainTex;
+            float3 worldRefl;
         };
 
         half _Glossiness;
@@ -44,10 +46,11 @@ Shader "Custom/Force FIeld"
         {
             // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-            o.Albedo = c.rgb;
+            o.Albedo = c.rgb * _Intensity;
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
+            o.Emission = texCUBE(_skyBox, IN.worldRefl).rgb;
             o.Alpha = c.a;
         }
         ENDCG
