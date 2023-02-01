@@ -17,9 +17,9 @@ The base material combined **normalized normal vector** and the **position vecto
 01 / 31 / 2023
 </p>
 
-All these shaders are made with standard surface shader.
+All these shaders are made with Standard Surface Shader that came along with the Universal Render Pipeline.
 
-Reflections, created using reflection probe and a custom skybox from Unity Store.
+Reflections, created using reflection probe and a custom skybox from the Unity Store.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/74547522/215907866-80561ca9-b48d-4ad4-8146-94f172bca5dc.png" />
