@@ -1,6 +1,8 @@
-#Total Materials: #
-![image](https://user-images.githubusercontent.com/74547522/217335206-032f9221-82ae-4a40-91cd-b79955383bc3.png)
+# Total Materials: #
 
+<p align="center">
+  <img src= "https://user-images.githubusercontent.com/74547522/217335206-032f9221-82ae-4a40-91cd-b79955383bc3.png" />
+</p>
 
 ## Tutorial 1: Introduction to Shader Graph and Nodes ##
 
