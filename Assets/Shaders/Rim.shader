@@ -1,17 +1,15 @@
-Shader "Custom/Albedo"
+Shader "Custom/Rim"
 {
     Properties
     {
         _Color ("Color", Color) = (1,1,1,1)
-        _MainTex ("Albedo (RGB)", 2D) = "white" {} // ?Texture? //
-        _NormalMap ("Normal Map", 2D) = "bump" {} // ?Bump? //
-        _Glossiness ("Smoothness", Range(0,1)) = 0.5
-        _Metallic ("Metallic", Range(0,1)) = 0.0
-        _NormalAmount ("Normal Amount", Range(0,5)) = 0.0
+        _MainTex ("Albedo (RGB)", 2D) = "white" {}
+        _Rim ("Rim Power", Range(0, 1)) = 0.0
+        
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" }
         LOD 200
 
         CGPROGRAM
@@ -21,19 +19,20 @@ Shader "Custom/Albedo"
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
 
-        sampler2D _MainTex; // ?Texture? //
-        sampler2D _NormalMap; // ?Bump? //
+        sampler2D _MainTex;
 
         struct Input
         {
-            float2 uv_MainTex; // ?Texture u.v Coordinates? //
-            float2 uv_NormalMap; // ?Bump u.v Coordinates? //
+            float2 uv_MainTex;
         };
 
         half _Glossiness;
         half _Metallic;
-        half _NormalAmount;
-        fixed4 _Color; // Base alpha color r,g,b,a //
+        fixed4 _Color;
+
+        fixed3 viewDir;
+        fixed3 normalDir;
+        
 
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -45,10 +44,8 @@ Shader "Custom/Albedo"
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color; // Base * u.v color //
-            
+            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
             o.Albedo = c.rgb;
-            o.Normal = tex2D(_NormalMap, IN.uv_NormalMap) * _NormalAmount;
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
