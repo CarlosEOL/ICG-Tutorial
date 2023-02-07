@@ -1,4 +1,10 @@
-# Tutorial 1: Introduction to Shader Graph and Nodes #
+# Total Materials: #
+
+<p align="center">
+  <img src= "https://user-images.githubusercontent.com/74547522/217335206-032f9221-82ae-4a40-91cd-b79955383bc3.png" />
+</p>
+
+## Tutorial 1: Introduction to Shader Graph and Nodes ##
 
 <p align="right">
 01 / 19 / 2023
@@ -11,7 +17,7 @@ The base material combined **normalized normal vector** and the **position vecto
   <img src="https://user-images.githubusercontent.com/74547522/213585018-103c36fa-aa69-4d25-bbde-14f7e186b550.png" />
 </p>
 
-# Tutorial 2: Different Types of Shaders #
+## Tutorial 2: Different Types of Shaders ##
 
 <p align="right">
 01 / 31 / 2023
@@ -25,15 +31,15 @@ Reflections, specifically emission map, created using reflection probe and a cus
   <img src="https://user-images.githubusercontent.com/74547522/215907866-80561ca9-b48d-4ad4-8146-94f172bca5dc.png" />
 </p>
 
-# Tutorial 3: Sub-shaders #
+## Tutorial 3: Sub-shaders ##
 
 <p align="right">
-01 / 31 / 2023
+02 / 07 / 2023
 </p>
 
 A hexagonal effect for the force shield effect created using 1 main shader and a sub-shader.
 
-First, a 2D texture is needed 
+First, a hexagon 2D texture is needed to create the base of tiling. Then 
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/74547522/217306205-02ce68c3-c882-4ee3-8656-b65cc385b4be.png" />
@@ -41,7 +47,7 @@ First, a 2D texture is needed
 
 
 <p align="center">
-  <img src="[https://user-images.githubusercontent.com/74547522/217306205-02ce68c3-c882-4ee3-8656-b65cc385b4be.png](https://user-images.githubusercontent.com/74547522/217308348-511522bd-4076-42e0-9054-8fe96504de82.png)" />
+  <img src="https://user-images.githubusercontent.com/74547522/217308348-511522bd-4076-42e0-9054-8fe96504de82.png" />
 </p>
 
 
