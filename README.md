@@ -31,7 +31,7 @@ Reflections, specifically emission map, created using reflection probe and a cus
   <img src="https://user-images.githubusercontent.com/74547522/215907866-80561ca9-b48d-4ad4-8146-94f172bca5dc.png" />
 </p>
 
-## Tutorial 3: Sub-shaders ##
+## Tutorial 3: Sub-shaders and Blend Map ##
 
 <p align="right">
 02 / 07 / 2023
@@ -50,5 +50,10 @@ First, a hexagon 2D texture is needed to create the base of tiling. Then
   <img src="https://user-images.githubusercontent.com/74547522/217308348-511522bd-4076-42e0-9054-8fe96504de82.png" />
 </p>
 
+### Blend Map: ###
 
+Changing Blue Value of Blend Map
+![image](https://user-images.githubusercontent.com/74547522/217717584-bba7bf67-6ac3-48dc-aa6d-47b807200380.png)
+
+![image](https://user-images.githubusercontent.com/74547522/217717674-875a6822-0905-47c5-925c-ff8a3c072304.png)
 
