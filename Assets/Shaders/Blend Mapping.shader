@@ -1,16 +1,16 @@
-Shader "Custom/Rim"
+Shader "Custom/BlendMapping"
 {
     Properties
     {
         _Color ("Color", Color) = (1,1,1,1)
-        _RimColor ("Rim Color", Color) = (1,1,1,1)
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
-        _Rim ("Rim Power", Range(0, 1)) = 0.0
-        
+        _blendMap ("Albedo (RGB)", 2D) = "white" {}
+        _Glossiness ("Smoothness", Range(0,1)) = 0.5
+        _Metallic ("Metallic", Range(0,1)) = 0.0
     }
     SubShader
     {
-        Tags { "RenderType"="Transparent" }
+        Tags { "RenderType"="Opaque" }
         LOD 200
 
         CGPROGRAM
@@ -25,19 +25,12 @@ Shader "Custom/Rim"
         struct Input
         {
             float2 uv_MainTex;
-            fixed3 viewDir;
-            fixed3 normalDir;
+            float2 _blendMap;
         };
 
         half _Glossiness;
         half _Metallic;
-        half _Rim;
         fixed4 _Color;
-        fixed4 _RimColor;
-
-        fixed3 viewDir;
-        fixed3 normalDir;
-        
 
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -48,14 +41,10 @@ Shader "Custom/Rim"
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-
-            half rim = saturate(dot(normalize(IN.viewDir), o.Normal));
-            
             // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-            o.Albedo = pow (rim, _Rim) * 10 * _Color;
-            
-            o.Emission = _RimColor.rgb * pow (rim, 1 - _RimPower);
+            //fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+            fixed4 c = (_blendMap.r * r-texture.rgb) + (_blendMap.g * g-texture.rgb) + (_blendMap.b * b-texture.rgb);
+            o.Albedo = c.rgb;
             
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
