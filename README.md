@@ -57,3 +57,10 @@ Changing Blue Value of Blend Map
 
 ![image](https://user-images.githubusercontent.com/74547522/217717674-875a6822-0905-47c5-925c-ff8a3c072304.png)
 
+
+## Tutorial 3: Sub-shaders and Blend Map ##
+<p align="right">
+03 / 03 / 2023
+</p>
+
+
