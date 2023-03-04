@@ -52,6 +52,98 @@ Shader "Custom/Diffuse"
             o.Alpha = c.a;
         }
         ENDCG
+        
+        Pass
+        {
+            Tags { "LightMode"="ForwardBase" }
+            
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #pragma multi_compile_fwdbase nolightmap nodirlightmap nodynlightmap novertexlight
+            // make fog work
+            #pragma multi_compile_fog
+
+            #include "UnityLightingCommon.cginc"
+            #include "UnityCG.cginc"
+            #include "Lighting.cginc"
+            #include "AutoLight.cginc"
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+                float4 texcoord : TEXCOORD0;
+            };
+
+            struct v2f
+            {
+                float2 uv : TEXCOORD0;
+                UNITY_FOG_COORDS(1)
+                float4 vertex : SV_POSITION;
+                fixed4 diff : COLOR0;
+                SHADOW_COORDS(1)
+            };
+
+            v2f vert (appdata v)
+            {
+                v2f o;
+                //TRANSFER_SHADOW(o)
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.texcoord;
+                half3 worldNormal = UnityObjectToWorldNormal(v.normal);
+                half nl = max(0, dot(worldNormal, _WorldSpaceLightPos0.xyz));
+                o.diff = nl * _LightColor0;
+                UNITY_TRANSFER_FOG(o,o.vertex);
+                return o;
+            }
+
+            sampler2D _MainTex;
+            
+            fixed4 frag (v2f i) : SV_Target
+            {
+                fixed4 col = tex2D(_MainTex, i.uv);
+                fixed shadow = SHADOW_ATTENUATION(i);
+                col.rgb *= i.diff;// * shadow;
+                return col;
+            }
+            ENDCG
+        }
+        
+        Pass
+        {
+            Tags {"LightMode" = "ShadowCaster"}
+            
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #pragma multi_compile_shadowcaster
+            #include "UnityCG.cginc"
+
+            struct appdata {
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+                float4 texcoord : TEXCOORD0;
+            };
+            
+            struct v2f {
+                V2F_SHADOW_CASTER;
+            };
+            
+            v2f vert(appdata v)
+            {
+                v2f o;
+                TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
+                return o;
+            }
+            
+            float4 frag(v2f i) : SV_Target
+            {
+                SHADOW_CASTER_FRAGMENT(i)
+            }
+
+            ENDCG
+        }
     }
     FallBack "Diffuse"
 }
