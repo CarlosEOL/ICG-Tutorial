@@ -60,6 +60,10 @@ Shader "Custom/Displacement"
                     
                     //float4 newVert = float4(v.normal * temp, 0.0);
                     float4 newVert = v.vertex + float4(v.normal * temp, 0);
+
+                    //float4 displacement = tex2Dlod(_DisplacementMap, float4(v.uv,0,0)).r;
+                    //float4 temp = float4(v.vertex.x, v.vertex.y, v.vertex.z, 1.0);
+                    //temp.xyz += displacement * _DisplacementStrength;
                     
                     o.vertex = UnityObjectToClipPos(newVert);
                     o.uv = TRANSFORM_TEX(v.uv, _MainTex);
