@@ -103,7 +103,10 @@ To:
 Tutorial Website: https://en.wikibooks.org/wiki/Cg_Programming/Unity/Displacement_Maps 
 
 
-The problem of me following the tutorial in tut#5:
+The problem of me following the tutorial in tut#5: 
+1. the o is uninitialized because output is not input, "displacement" variable is basically the dot product of vertex position input and displacement map u.v.r. 
+2. float4 temp is basically 1 if the surface is a plane and if you do apply "displacement" with normal, temp will still be 1:1:1.
+
 ![image](https://user-images.githubusercontent.com/74547522/222934441-0edf8945-be2f-4782-8f3c-b4680b2ca650.png)
 ![image](https://user-images.githubusercontent.com/74547522/222934451-cc8b3666-92cc-409b-acb3-7ae6a2169162.png)
 The plane, all vertex moves away from the original pos, all vert is changed.
