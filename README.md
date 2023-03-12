@@ -112,4 +112,42 @@ The problem of me following the tutorial in tut#5:
 The plane, all vertex moves away from the original pos, all vert is changed.
 ![image](https://user-images.githubusercontent.com/74547522/222934465-b137022d-7d22-425c-be48-d8b49f00cc53.png)
 
+## Tutorial 6: Perlin/Kernal Noise ##
+<p align="right">
+03 / 11 / 2023
+</p>
 
+Please excuse my absence in recent lectures and tutorials, I was ill and not sure if the illness were contagious, stayed home and rested.
+
+### Final Perlin Noise Texture ###
+![image](https://user-images.githubusercontent.com/74547522/224524230-034e0a0b-21cf-476f-b4a3-5665dd4f38a7.png)
+
+#### Generate Perlin Noise Using Cs ####
+![image](https://user-images.githubusercontent.com/74547522/224524246-638a0554-8ea5-4439-bf77-0ec7b9587f36.png)
+
+:full_moon: [ContextMenu("Generate Texture")] Creates a new tab under Cs's dropdown menu and it runs whatever function below.
+
+:full_moon: new Texture2D(width, height, textureFormat: TextureFormat.RGBA32, true); Creates a new Texture2D that takes in length, width, a textureformat that supports RGBA in 32bits, filter mip-mapping (Mipchain true).
+
+For each pixels of width and length, doesn't matter the order of the for loops as long it covers the entire texture2D.
+
+![image](https://user-images.githubusercontent.com/74547522/224524438-54ab26de-7bc4-4163-a1a5-045412386bf4.png)
+
+![image](https://user-images.githubusercontent.com/74547522/224524693-684aef38-80b5-4301-b340-df6caa333325.png)
+
+*Scale* increase how much perlin noise info that a pixel is goign to contain.
+
+*Sample* contains the color information of that pixel.
+
+:full_moon: Mathf.PerlinNoise(xCoord, yCoord); Generates Perlin noise within given resolution.
+
+:full_moon: SetPixel(x, y, color) is a Texture2D method that allows users to set the pixels within that x,y coord to color. In our case, color is *Sample*.
+
+![image](https://user-images.githubusercontent.com/74547522/224524875-e5d07214-894e-4c8d-b4e8-3fc56af1b5dd.png)
+
+After all pixel is set, apply() and save everything to Texture2D then call SaveTextureToJPG function.
+
+#### Saving Texture to JPG ####
+![image](https://user-images.githubusercontent.com/74547522/224524254-2eac06ae-9017-4559-ae9e-d505661fb966.png)
+
+bytes: contain a byte of information (0, 255) a perfect number for color, which is 8 bit of ram. We then use the byte[] array to save Texture2D to color information. Then we save these information with File.WriteAllToBytes(filepath, bytes) to their file dir and byte data.
